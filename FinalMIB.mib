@@ -1,0 +1,80 @@
+Lab1-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, IpAddress, Integer32, mib-2
+        FROM SNMPv2-SMI;
+
+LabOneMIB MODULE-IDENTITY
+    LAST-UPDATED "202503190000Z"
+    ORGANIZATION "IETF SNMPv2 Working Group"
+    CONTACT-INFO "Brezeanu_Valentina - Dobre_George_Cătălin - Costache_Luis_Andrei"
+    DESCRIPTION  "Implementation of a SNMP agent "    
+    ::= { mib-2 48 }
+
+ip OBJECT IDENTIFIER ::= { LabOneMIB 1 }
+
+numberEntered OBJECT-TYPE
+    SYNTAX       Integer32 (0..2147483647)
+    MAX-ACCESS   read-write
+    STATUS       current
+    DESCRIPTION  "Number of people that have entered the room."
+    ::= { ip 1 }
+
+numberLeft OBJECT-TYPE
+    SYNTAX       Integer32 (0..2147483647)
+    MAX-ACCESS   read-write
+    STATUS       current
+    DESCRIPTION  "Number of people that have left the room."
+    ::= { ip 2 }
+
+deviceIp OBJECT-TYPE
+    SYNTAX       IpAddress
+    MAX-ACCESS   read-write
+    STATUS       current
+    DESCRIPTION  "IP address of the device monitoring the classroom."
+    ::= { ip 3 }
+
+-- Tabelul cu date --
+dateTime OBJECT-TYPE
+    SYNTAX       SEQUENCE OF DateTimeEntry
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION  "Table for daily history."
+    ::= { ip 4 }
+
+dateTimeEntry OBJECT-TYPE
+    SYNTAX       DateTimeEntry
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION  "Entry in the history table."
+    INDEX { dayYear }
+    ::= { dateTime 1 }
+
+DateTimeEntry ::= SEQUENCE {
+    dayYear        Integer32,
+    peopleEntered  Integer32,
+    peopleLeft     Integer32
+}
+    
+dayYear OBJECT-TYPE
+    SYNTAX      Integer32 (1..365)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Day of the Year"
+    ::= { dateTimeEntry 1 }
+
+peopleEntered OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION "People that entered the room"
+    ::= { dateTimeEntry 2 }
+
+peopleLeft OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION "People that left the room"
+    ::= { dateTimeEntry 3 }
+
+END
