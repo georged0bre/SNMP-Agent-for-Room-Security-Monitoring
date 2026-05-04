@@ -1,5 +1,3 @@
-# SNMP-Agent-for-Room-Security-Monitoring
-The goal of this project was to define a Management Information Base (MIB) and develop a functional SNMP Agent from scratch to handle network management operations (GET, SET, GETNEXT).
 # SNMP Agent: Room Security & History Monitor
 
 This project implements a fully functional **SNMP Agent** from scratch using C++. It is designed to manage a security system that monitors occupancy levels in a room and maintains a historical log of entries and exits[cite: 3, 4].
