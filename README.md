@@ -3,7 +3,7 @@
 This project implements a fully functional **SNMP Agent** from scratch using C++. It is designed to manage a security system that monitors occupancy levels in a room and maintains a historical log of entries and exits.
 
 ## 📋 Project Overview
-The agent operates as a console application, communicating with SNMP Managers (like MibBrowser) via the UDP protocol on **Port 161**[cite: 3, 7]. It handles the encoding and decoding of **Basic Encoding Rules (BER)** to process management requests.
+The agent operates as a console application, communicating with SNMP Managers (like MibBrowser) via the UDP protocol on **Port 161**. It handles the encoding and decoding of **Basic Encoding Rules (BER)** to process management requests.
 
 ### Key Features
 *   **Custom MIB Implementation**: Based on the `Lab1-MIB` definition, managing data under the OID `1.3.6.1.2.1.48.
